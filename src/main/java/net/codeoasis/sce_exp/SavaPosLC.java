@@ -1,6 +1,9 @@
 package net.codeoasis.sce_exp;
 
 import com.google.gson.Gson;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Document;
@@ -20,6 +23,15 @@ import java.util.Map;
 
 public class SavaPosLC extends AnAction {
 
+    private void showNotification(String content) {
+        Notification notification = new Notification(
+                "Snippet Save Notification",  // Notification Group ID (can be used to categorize notifications)
+                "SCE",               // Title of the notification
+                content,                      // Content of the notification
+                NotificationType.INFORMATION  // Type of notification (e.g., INFORMATION, WARNING, ERROR)
+        );
+        Notifications.Bus.notify(notification);
+    }
 
     private void sendPosSample(String selectLines, String extractMethods, String projectName) {
 
@@ -62,11 +74,11 @@ public class SavaPosLC extends AnAction {
             if (response.statusCode() == 201) {
                 Map<String, Object> result = gson.fromJson(response.body().toString(), Map.class);
 //                System.out.println(result);
-                OasisActivator.showNotification("Sample Saved !");
+                showNotification("Sample Saved !");
             } else if(response.statusCode() == 401) {
                 OasisActivator.showUnLoginNotification();
             }else {
-                OasisActivator.showNotification("Save failed! The error code:" + response.statusCode());
+                showNotification("Save failed! The error code:" + response.statusCode());
             }
 
         } catch (Exception xe) {
