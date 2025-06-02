@@ -18,6 +18,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
+import com.intellij.psi.*;
+import com.intellij.psi.util.*;
+
 
 public class SavaNegLM extends AnAction {
 
@@ -30,6 +33,26 @@ public class SavaNegLM extends AnAction {
         );
         Notifications.Bus.notify(notification);
     }
+
+//    private String findMethodName(int startOffset, int endOffset, Project project, Editor editor) {
+//        PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.getDocument());
+//        if (psiFile == null) return "";
+//
+//        PsiElement startElement = psiFile.findElementAt(startOffset);
+//        PsiElement endElement = psiFile.findElementAt(endOffset);
+//        if (startElement == null || endElement == null) return "";
+//
+//        PsiElement commonParent = PsiTreeUtil.findCommonParent(startElement, endElement);
+//        if (commonParent == null) return "";
+//
+//        PsiMethod method = PsiTreeUtil.getParentOfType(commonParent, PsiMethod.class);
+//        if (method != null) {
+//            String methodName = method.toString();
+//            System.out.println("Enclosing method name: " + methodName);
+//        }
+//
+//        return "";
+//    }
 
     private void sendNegSample(String selectLines, String projectName) {
         // Check if the user is already logged in (by checking locally stored data)
@@ -107,6 +130,10 @@ public class SavaNegLM extends AnAction {
             if (selectedText != null) {
                 // Send the selectedText to the server (implement this next)
 //                sendSnippetToServer(selectedText, e);
+                int startOffset = selectionModel.getSelectionStart();
+                int endOffset = selectionModel.getSelectionEnd();
+
+//                findMethodName(startOffset, endOffset, project, editor);
                 sendNegSample(selectedText, projectName);
             } else {
 //                showNotification("No text selected!");

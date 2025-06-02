@@ -26,28 +26,28 @@
     </extensions>
 
     <actions>
-        <group id="SaveLongMethod" text="Save as Long Method" description="Save as Long Method" icon="/icons/16-icon.png" popup="true">
-            <action id="PositiveLongMethod" class="net.codeoasis.sce_exp.SavaPosLM" text="PositiveLongMethod"
-                    description="PositiveLongMethod" icon="/icons/16-icon.png">
-            </action>
-            <action id="NegativeLongMethod" class="net.codeoasis.sce_exp.SavaNegLM" text="NegativeLongMethod"
-                    description="NegativeLongMethod" icon="/icons/16-icon.png">
-            </action>
-            <separator/>
-                <add-to-group group-id="EditorPopupMenu"/>
-            <separator/>
-        </group>
-        <group id="SaveLargeClass" text="Save as Large Class" description="Save as Large Class" icon="/icons/16-icon.png" popup="true">
-            <action id="PositiveLargeClass" class="net.codeoasis.sce_exp.SavaPosLC" text="PositiveLargeClass"
-                    description="PositiveLargeClass" icon="/icons/16-icon.png">
-            </action>
-            <action id="NegativeLargeClass" class="net.codeoasis.sce_exp.SavaNegLC" text="NegativeLargeClass"
-                    description="NegativeLargeClass" icon="/icons/16-icon.png">
-            </action>
-            <separator/>
-            <add-to-group group-id="EditorPopupMenu"/>
-            <separator/>
-        </group>
+<!--        <group id="SaveLongMethod" text="Save as Long Method" description="Save as Long Method" icon="/icons/16-icon.png" popup="true">-->
+<!--            <action id="PositiveLongMethod" class="net.codeoasis.sce_exp.SavaPosLM" text="PositiveLongMethod"-->
+<!--                    description="PositiveLongMethod" icon="/icons/16-icon.png">-->
+<!--            </action>-->
+<!--            <action id="NegativeLongMethod" class="net.codeoasis.sce_exp.SavaNegLM" text="NegativeLongMethod"-->
+<!--                    description="NegativeLongMethod" icon="/icons/16-icon.png">-->
+<!--            </action>-->
+<!--            <separator/>-->
+<!--                <add-to-group group-id="EditorPopupMenu"/>-->
+<!--            <separator/>-->
+<!--        </group>-->
+<!--        <group id="SaveLargeClass" text="Save as Large Class" description="Save as Large Class" icon="/icons/16-icon.png" popup="true">-->
+<!--            <action id="PositiveLargeClass" class="net.codeoasis.sce_exp.SavaPosLC" text="PositiveLargeClass"-->
+<!--                    description="PositiveLargeClass" icon="/icons/16-icon.png">-->
+<!--            </action>-->
+<!--            <action id="NegativeLargeClass" class="net.codeoasis.sce_exp.SavaNegLC" text="NegativeLargeClass"-->
+<!--                    description="NegativeLargeClass" icon="/icons/16-icon.png">-->
+<!--            </action>-->
+<!--            <separator/>-->
+<!--            <add-to-group group-id="EditorPopupMenu"/>-->
+<!--            <separator/>-->
+<!--        </group>-->
         <action id="LoginAction" class="net.codeoasis.sce_exp.LoginAction" text="SCE Login" description="Login SCE"   icon="/icons/16-icon.png">
             <add-to-group group-id="ToolsMenu" />
         </action>
