@@ -23,6 +23,10 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="Snippet Save Notification" displayType="BALLOON"/>
+        <toolWindow id="LM Data List"
+                    anchor="right"
+                    factoryClass="net.codeoasis.sce_exp.LMToolWindowFactory"
+                    secondary="true"/>
     </extensions>
 
     <actions>

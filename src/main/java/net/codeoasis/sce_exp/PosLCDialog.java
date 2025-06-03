@@ -1,7 +1,6 @@
 package net.codeoasis.sce_exp;
 
 import com.intellij.openapi.ui.DialogWrapper;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +16,7 @@ public class PosLCDialog extends DialogWrapper {
     }
 
     @Override
-    protected @Nullable JComponent createCenterPanel() {
+    protected JComponent createCenterPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(2, 2));
 

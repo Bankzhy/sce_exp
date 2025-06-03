@@ -5,7 +5,6 @@ import com.intellij.notification.*;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
-import org.jetbrains.annotations.NotNull;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -97,7 +96,7 @@ public class OasisActivator {
 
         notification.addAction(new NotificationAction("Login") {
             @Override
-            public void actionPerformed(@NotNull AnActionEvent e, @NotNull Notification notification) {
+            public void actionPerformed(AnActionEvent e, Notification notification) {
                 notification.expire(); // Optionally close the notification
                 LoginDialog loginDialog = new LoginDialog();
                 if (loginDialog.showAndGet()) {  // If the user clicked "OK"
