@@ -143,7 +143,7 @@ public class FEPluginPanel extends JPanel {
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://192.168.11.5:8000/api/fe/"))  // Replace with your server's URL
+                    .uri(URI.create("http://www.codeoasis.net:8005/api/fe/"))  // Replace with your server's URL
                     .header("Content-Type", "application/json")  // Set Content-Type header
                     .header("Authorization", "Bearer " + LoginManager.getAccess())
                     .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body
@@ -169,7 +169,7 @@ public class FEPluginPanel extends JPanel {
     public void refreshDataList() {
         try {
 
-            String url = "http://192.168.11.5:8000/api/fe/";
+            String url = "http://www.codeoasis.net:8005/api/fe/";
             URI uri = new URIBuilder(url)
                     .addParameter("project", project.getName())
                     .build();
