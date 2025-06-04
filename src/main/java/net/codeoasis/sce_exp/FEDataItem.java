@@ -1,10 +1,10 @@
 package net.codeoasis.sce_exp;
 import com.google.gson.annotations.SerializedName;
 
-public class LMDataItem {
+public class FEDataItem {
 
-    @SerializedName("lm_id")
-    int lmId;
+    @SerializedName("fe_id")
+    int feId;
 
     String project;
 
@@ -14,24 +14,24 @@ public class LMDataItem {
     @SerializedName("method_name")
     String methodName;
 
-    @SerializedName("extract_lines")
-    String extractLines;
+    @SerializedName("target_class_name")
+    String targetClassName;
 
     String path;
 
     int label;
 
-    public LMDataItem(int lmId ,String project, String className, String methodName, int label, String path, String extractLines) {
-        this.lmId = lmId;
+    public FEDataItem(int feId , String project, String className, String methodName, String targetClassName, int label, String path) {
+        this.feId = feId;
         this.project = project;
         this.className = className;
         this.methodName = methodName;
+        this.targetClassName = targetClassName;
         this.label = label;
         this.path = path;
-        this.extractLines = extractLines;
     }
 
     public Object[] toTableRow() {
-        return new Object[]{project, className, methodName, label, extractLines, path};
+        return new Object[]{project, className, methodName, targetClassName, label, path};
     }
 }

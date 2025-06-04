@@ -19,6 +19,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
+
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
@@ -26,6 +27,14 @@
         <toolWindow id="LM Data List"
                     anchor="right"
                     factoryClass="net.codeoasis.sce_exp.LMToolWindowFactory"
+                    secondary="true"/>
+        <toolWindow id="LC Data List"
+                    anchor="right"
+                    factoryClass="net.codeoasis.sce_exp.LCToolWindowFactory"
+                    secondary="true"/>
+        <toolWindow id="FE Data List"
+                    anchor="right"
+                    factoryClass="net.codeoasis.sce_exp.FEToolWindowFactory"
                     secondary="true"/>
     </extensions>
 

@@ -1,45 +1,38 @@
 package net.codeoasis.sce_exp;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import javax.swing.event.TableModelEvent;
-import javax.swing.table.DefaultTableModel;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
-import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.project.Project;
 import org.apache.http.client.utils.URIBuilder;
-import com.intellij.openapi.fileEditor.OpenFileDescriptor;
-import com.intellij.psi.*;
 
-public class LMPluginPanel extends JPanel {
+import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class FEPluginPanel extends JPanel {
     private final Project project;
     private JTable table;
     private DefaultTableModel tableModel;
     private JButton refreshButton;
     private JButton postButton;
 
-    private final String[] columnNames = {"Project", "ClassName", "MethodName", "Label", "Extract Lines","Path"};
+    private final String[] columnNames = {"Project", "ClassName", "MethodName", "TargetClassName","Label", "Path"};
     private ArrayList<LMDataItem> dataItems = new ArrayList<>();
 
 
-    public LMPluginPanel(Project project) {
+    public FEPluginPanel(Project project) {
         this.project = project;
         setLayout(new BorderLayout());
 
@@ -47,7 +40,9 @@ public class LMPluginPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                if (getColumnName(column).equals("Label") || getColumnName(column).equals("Extract Lines")) {
+                // Only allow editing for "Label" column
+//                return getColumnName(column).equals("Label");
+                if (getColumnName(column).equals("Label")) {
                     return true;
                 } else {
                     return false;
@@ -92,11 +87,7 @@ public class LMPluginPanel extends JPanel {
                 Object newValue = tableModel.getValueAt(row, column);
                 System.out.printf("Cell changed at row %d, column %d: %s%n", row, column, newValue);
 
-                if (column == 3) {
-                    dataItems.get(row).label = Integer.parseInt(newValue.toString());
-                } else if (column == 4) {
-                    dataItems.remove(row).extractLines = newValue.toString();
-                }
+                dataItems.get(row).label = Integer.parseInt(newValue.toString());
             }
         });
 
@@ -138,9 +129,8 @@ public class LMPluginPanel extends JPanel {
 
             if (dataItems.get(i).label != 9) {
                 Map<String, Object> update = new HashMap();
-                update.put("lm_id", dataItems.get(i).lmId);
+                update.put("fe_id", dataItems.get(i).lmId);
                 update.put("label", dataItems.get(i).label);
-                update.put("extract_lines", dataItems.get(i).extractLines);
                 updateList.add(update);
             }
         }
@@ -153,7 +143,7 @@ public class LMPluginPanel extends JPanel {
 
             // Build the HTTP POST request
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://192.168.11.5:8000/api/lm/"))  // Replace with your server's URL
+                    .uri(URI.create("http://192.168.11.5:8000/api/fe/"))  // Replace with your server's URL
                     .header("Content-Type", "application/json")  // Set Content-Type header
                     .header("Authorization", "Bearer " + LoginManager.getAccess())
                     .POST(HttpRequest.BodyPublishers.ofString(json))       // Attach the request body
@@ -179,7 +169,7 @@ public class LMPluginPanel extends JPanel {
     public void refreshDataList() {
         try {
 
-            String url = "http://192.168.11.5:8000/api/lm/";
+            String url = "http://192.168.11.5:8000/api/fe/";
             URI uri = new URIBuilder(url)
                     .addParameter("project", project.getName())
                     .build();
