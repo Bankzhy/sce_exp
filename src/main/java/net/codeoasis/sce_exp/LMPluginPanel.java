@@ -95,7 +95,7 @@ public class LMPluginPanel extends JPanel {
                 if (column == 3) {
                     dataItems.get(row).label = Integer.parseInt(newValue.toString());
                 } else if (column == 4) {
-                    dataItems.remove(row).extractLines = newValue.toString();
+                    dataItems.get(row).extractLines = newValue.toString();
                 }
             }
         });
@@ -135,7 +135,6 @@ public class LMPluginPanel extends JPanel {
         ArrayList<Map<String, Object>> updateList = new ArrayList();
         Map<String, Object> postData = new HashMap<>();
         for (int i=0; i<dataItems.size(); i++) {
-
             if (dataItems.get(i).label != 9) {
                 Map<String, Object> update = new HashMap();
                 update.put("lm_id", dataItems.get(i).lmId);
