@@ -29,7 +29,7 @@ public class FEPluginPanel extends JPanel {
     private JButton postButton;
 
     private final String[] columnNames = {"Project", "ClassName", "MethodName", "TargetClassName","Label", "Path"};
-    private ArrayList<LMDataItem> dataItems = new ArrayList<>();
+    private ArrayList<FEDataItem> dataItems = new ArrayList<>();
 
 
     public FEPluginPanel(Project project) {
@@ -63,7 +63,7 @@ public class FEPluginPanel extends JPanel {
                 if (e.getClickCount() == 2 && row != -1) {
                     if (row >= 0) {
                         // Get the DataItem for the clicked row
-                        LMDataItem clickedItem = dataItems.get(row);
+                        FEDataItem clickedItem = dataItems.get(row);
 
                         // Example: show a message dialog
 
@@ -129,7 +129,7 @@ public class FEPluginPanel extends JPanel {
 
             if (dataItems.get(i).label != 9) {
                 Map<String, Object> update = new HashMap();
-                update.put("fe_id", dataItems.get(i).lmId);
+                update.put("fe_id", dataItems.get(i).feId);
                 update.put("label", dataItems.get(i).label);
                 updateList.add(update);
             }
@@ -189,7 +189,7 @@ public class FEPluginPanel extends JPanel {
             Gson gson = new Gson();
 
             if (response.statusCode() == 200) {
-                dataItems = gson.fromJson(json, new TypeToken<ArrayList<LMDataItem>>() {}.getType());
+                dataItems = gson.fromJson(json, new TypeToken<ArrayList<FEDataItem>>() {}.getType());
             } else if(response.statusCode() == 401) {
                 OasisActivator.showUnLoginNotification();
             } else {
@@ -200,7 +200,7 @@ public class FEPluginPanel extends JPanel {
         }
 
         tableModel.setRowCount(0); // clear existing rows
-        for (LMDataItem item : dataItems) {
+        for (FEDataItem item : dataItems) {
             tableModel.addRow(item.toTableRow());
         }
     }
